@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 void copy_array(int from[], int to[], int sz);
+#ifdef DEBUG
 int test_copy_array();
+#endif
 
 int main() {
 	test_copy_array();
