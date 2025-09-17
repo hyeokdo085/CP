@@ -5,11 +5,16 @@ void print_array_double(double arr[], int sz);
 void printArrayDouble(double* arr, int sz);
 int test_print_array();
 int test_swapDouble();
+int test_function_pointer();
+double add(double a, double b);
+double sub(double a, double b);
+double mul(double a, double b);
 
 int main() {
 
 	test_swapDouble();
 	test_print_array();
+	test_function_pointer();
 
 	return 0;
 }
@@ -81,3 +86,44 @@ void printArrayDouble(double* arr, int sz) {
 	}
 	printf("\n");
 }
+
+
+
+
+// 함수 포인터 예제
+int test_function_pointer() {
+	double (*pfunc)(double a, double b) = NULL;
+	double result = 0.0;
+	pfunc = add;
+	printf("add(3.0, 4.0) = %lf\n", add(3.0,4.0));
+	add(3.0, 4.0);
+	//위아래 같음
+	result = (*pfunc)(3.0, 4.0); //7.0?
+	printf("(*pfunc)(3,4) = %lf\n", (pfunc)(3.0,4.0));
+
+	pfunc = mul;
+	printf("mul(3.0, 4.0) = %lf\n", (pfunc)(3.0, 4.0));
+
+}
+
+// 기능 : 실수 덧셈 결과 반환
+// 입력 : 두 실수
+// 출력 : 더한 값
+double add(double a, double b) {
+	return a + b;
+}
+
+// 기능 : 실수 뺄셈
+// 입력 : 두 실수
+// 출력 : 뺀 값
+double sub(double a, double b) {
+	return a - b;
+}
+
+// 기능 : 실수 곱셈
+// 입력 : 두 실수
+// 출력 : 곱한 값
+double mul(double a, double b) {
+	return a * b;
+}
+
